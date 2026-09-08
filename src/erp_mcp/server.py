@@ -74,6 +74,54 @@ def erp_delete_doc(doctype: str, name: str) -> str:
 
 
 @mcp.tool()
+def erp_list_orders(
+    status: str = "",
+    customer: str = "",
+    from_date: str = "",
+    to_date: str = "",
+    limit_page_length: int = 20,
+) -> str:
+    """Liet ke Sales Order (don hang) voi cac bo loc thuong dung.
+
+    status: vi du 'Draft', 'To Deliver and Bill', 'Completed', 'Cancelled'
+    from_date/to_date: dang 'YYYY-MM-DD', loc theo transaction_date
+    """
+    filters: list = []
+    if status:
+        filters.append(["status", "=", status])
+    if customer:
+        filters.append(["customer", "=", customer])
+    if from_date:
+        filters.append(["transaction_date", ">=", from_date])
+    if to_date:
+        filters.append(["transaction_date", "<=", to_date])
+
+    docs = get_client().list_docs(
+        "Sales Order",
+        filters=filters or None,
+        fields=["name", "customer", "status", "transaction_date", "grand_total", "currency"],
+        limit_page_length=limit_page_length,
+        order_by="transaction_date desc",
+    )
+    return json.dumps(docs, ensure_ascii=False, indent=2)
+
+
+@mcp.tool()
+def erp_sync_orders(modified_since: str = "", status: str = "", limit_page_length: int = 100) -> str:
+    """Dong bo Sales Order day du (gom bang con items) tu ERPNext.
+
+    modified_since: chuoi 'YYYY-MM-DD HH:MM:SS', chi lay ban ghi cap nhat tu thoi diem nay.
+    Bo trong se lay theo limit_page_length ban ghi moi cap nhat gan day nhat.
+    """
+    orders = get_client().sync_orders(
+        modified_since=modified_since or None,
+        status=status or None,
+        limit_page_length=limit_page_length,
+    )
+    return json.dumps(orders, ensure_ascii=False, indent=2)
+
+
+@mcp.tool()
 def erp_call_method(method_path: str, params: str = "") -> str:
     """Goi mot whitelisted method tuy chinh tren Frappe, vi du 'frappe.client.get_count'.
 

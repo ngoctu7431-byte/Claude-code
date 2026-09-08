@@ -83,6 +83,32 @@ class FrappeClient:
         response = self._client.delete(f"/api/resource/{doctype}/{name}")
         self._raise_for_status(response)
 
+    def sync_orders(
+        self,
+        modified_since: str | None = None,
+        status: str | None = None,
+        limit_page_length: int = 100,
+    ) -> list[dict]:
+        """Lay danh sach Sales Order day du (bao gom bang con items) de dong bo.
+
+        modified_since: chuoi ngay/gio, vi du '2026-09-01 00:00:00'. Neu bo trong,
+        lay theo limit_page_length ban ghi moi cap nhat gan day nhat.
+        """
+        filters: list = []
+        if modified_since:
+            filters.append(["modified", ">=", modified_since])
+        if status:
+            filters.append(["status", "=", status])
+
+        names = self.list_docs(
+            "Sales Order",
+            filters=filters or None,
+            fields=["name"],
+            limit_page_length=limit_page_length,
+            order_by="modified desc",
+        )
+        return [self.get_doc("Sales Order", row["name"]) for row in names]
+
     def call_method(self, method_path: str, params: dict | None = None) -> dict:
         response = self._client.post(f"/api/method/{method_path}", json=params or {})
         self._raise_for_status(response)
