@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "erp": {
+      "command": "python",
+      "args": ["-m", "erp_mcp.server"],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}
