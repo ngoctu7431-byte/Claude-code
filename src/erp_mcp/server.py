@@ -2,13 +2,13 @@ import json
 from pathlib import Path
 
 from dotenv import load_dotenv
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
-from erp_mcp.frappe_client import FrappeClient, FrappeConfigError
+from erp_mcp.frappe_client import FrappeClient
 
 load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
-mcp = FastMCP("erp-mcp")
+mcp = MCPServer("erp-mcp")
 
 _client: FrappeClient | None = None
 
@@ -133,10 +133,6 @@ def erp_call_method(method_path: str, params: str = "") -> str:
 
 
 def main() -> None:
-    try:
-        get_client()
-    except FrappeConfigError as exc:
-        raise SystemExit(str(exc)) from exc
     mcp.run()
 
 

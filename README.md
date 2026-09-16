@@ -6,8 +6,12 @@ dung xac thuc API Key/API Secret.
 ## Cai dat
 
 ```bash
-pip install -e .
+python3 -m venv .venv
+.venv/bin/pip install -e .
 ```
+
+`.mcp.json` tro thang vao `.venv/bin/python`, nen buoc tao venv nay la bat buoc
+truoc khi Claude Code nap duoc MCP server.
 
 ## Cau hinh
 

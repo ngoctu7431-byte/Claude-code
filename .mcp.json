@@ -1,9 +1,8 @@
 {
   "mcpServers": {
     "erp": {
-      "command": "python",
-      "args": ["-m", "erp_mcp.server"],
-      "cwd": "${workspaceFolder}"
+      "command": ".venv/bin/python",
+      "args": ["-m", "erp_mcp.server"]
     }
   }
 }
