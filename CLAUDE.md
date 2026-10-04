@@ -8,6 +8,12 @@
 - Quy đổi: `giá có VAT = price_list_rate × 1,08`, làm tròn đến đồng (ví dụ 529.629,63 → 572.000đ).
 - Chỉ báo thêm giá chưa VAT khi được hỏi hoặc khi sắp ghi giá vào ERP.
 
+### Cách khách gọi tên hàng
+
+- **"Cstn"** (cao su thiên nhiên) = dòng **Natural**, tên đầy đủ "Nệm Cao Su Thiên Nhiên Việt Nhật Natural", mã `NAxx-y` (ví dụ `NA10-6`).
+  Không nhầm với Nano gấp (`NA2xx`, `NA3xx`).
+- Cách ghi kích thước: "1m6 x 15p sl 2t" = rộng 160cm × dày 15cm, số lượng 2 tấm (dài mặc định 200cm).
+
 ### Nệm gấp 2 / gấp 3 = giá nệm thường cùng loại + 150.000đ
 
 - Giá nệm gấp 2, gấp 3 **luôn bằng giá nệm thường cùng dòng, cùng độ dày, cùng kích thước + 150.000đ (đã gồm VAT)**.
