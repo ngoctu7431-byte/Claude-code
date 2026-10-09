@@ -1,5 +1,10 @@
 # Ghi chú cho Claude
 
+## Cách làm việc
+
+- **Không tự suy diễn.** Chỉ báo những gì đã thật sự kiểm tra. Kiểm tra 1 chứng từ thì chỉ nói về chứng từ đó, không suy ra cho các chứng từ khác.
+- Muốn nói về nhiều đơn/nhiều mã thì phải kiểm tra từng cái. Chưa kiểm tra hết thì nói rõ là chưa kiểm tra.
+
 ## Quy tắc giá nghiệp vụ (ERP Người Thuần Việt)
 
 ### Báo giá cho người dùng luôn là giá ĐÃ GỒM VAT
