@@ -33,3 +33,9 @@ Công thức: `giá_gấp (ERP) = (giá_thường_có_VAT + 150.000) / 1,08`.
 
 **Ghép mã nệm gấp với nệm thường theo tên sản phẩm** (dòng, độ dày, kích thước), không suy theo hậu tố mã:
 hậu tố của mã gấp không trùng với mã thường (`SORA10-1` là 100x200 nhưng `SR310-1` là 120x200).
+
+### Đưa đơn từ Misa lên ERP
+
+- Chỉ đưa lên **chứng từ bán hàng** của Misa, tức các số chứng từ bắt đầu bằng **`BH`** (ví dụ `BH00123`).
+- **Không** đưa lên đơn đặt hàng, tức các số chứng từ bắt đầu bằng **`ĐH`** (hoặc `DH`), dù chúng có trong file xuất từ Misa.
+- Lọc theo tiền tố số chứng từ trước khi ghép khách hàng hoặc mã hàng. Báo lại cho người dùng số đơn `ĐH` đã bỏ qua.
