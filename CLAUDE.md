@@ -40,3 +40,5 @@ hậu tố của mã gấp không trùng với mã thường (`SORA10-1` là 100
 - Mỗi chứng từ `BH` tạo thành một **Đơn bán hàng (Sales Order)** trên ERP, không tạo Hóa đơn bán hàng (Sales Invoice).
 - **Không** đưa lên đơn đặt hàng, tức các số chứng từ bắt đầu bằng **`ĐH`** (hoặc `DH`), dù chúng có trong file xuất từ Misa.
 - Lọc theo tiền tố số chứng từ trước khi ghép khách hàng hoặc mã hàng. Báo lại cho người dùng số đơn `ĐH` đã bỏ qua.
+- Số chứng từ Misa ghi vào ô **`po_no`** (số PO của khách) trên Sales Order, ví dụ `SAL-ORD-2026-00495` có `po_no` = `BH05132`.
+- Trước khi tạo đơn, kiểm tra trên ERP xem số `BH` đó đã có Sales Order có `po_no` trùng chưa (tính cả đơn nháp). Đã có thì bỏ qua, không tạo trùng.
