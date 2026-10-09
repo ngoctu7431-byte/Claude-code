@@ -37,5 +37,6 @@ hậu tố của mã gấp không trùng với mã thường (`SORA10-1` là 100
 ### Đưa đơn từ Misa lên ERP
 
 - Chỉ đưa lên **chứng từ bán hàng** của Misa, tức các số chứng từ bắt đầu bằng **`BH`** (ví dụ `BH00123`).
+- Mỗi chứng từ `BH` tạo thành một **Đơn bán hàng (Sales Order)** trên ERP, không tạo Hóa đơn bán hàng (Sales Invoice).
 - **Không** đưa lên đơn đặt hàng, tức các số chứng từ bắt đầu bằng **`ĐH`** (hoặc `DH`), dù chúng có trong file xuất từ Misa.
 - Lọc theo tiền tố số chứng từ trước khi ghép khách hàng hoặc mã hàng. Báo lại cho người dùng số đơn `ĐH` đã bỏ qua.
