@@ -55,4 +55,7 @@ hậu tố của mã gấp không trùng với mã thường (`SORA10-1` là 100
   - Chiết khấu Misa ghi vào `discount_amount`, với `apply_discount_on` = `Net Total`.
   - Diễn giải Misa ghi vào mô tả dòng hàng đầu tiên, dạng `GIAO HÀNG: …`. Bỏ qua diễn giải chung chung kiểu "Bán hàng <tên khách>".
   - Dòng ghi chú dưới mặt hàng ghi vào mô tả của dòng đó.
+  - Nhân viên bán hàng lấy theo ô "Nhân viên bán hàng" trên chứng từ Misa, ghi vào bảng `sales_team` (`allocated_percentage` = 100, `allocated_amount` = `net_total`).
+    Phiếu in ra từ Misa không có ô này, nên phải hỏi người dùng. Tên nhân viên phải có đúng trong danh sách Sales Person trên ERP; không có thì báo lại, không tự chọn người gần giống.
+    Sửa `sales_team` sau khi đơn đã duyệt thì ERP không tự tính `allocated_amount`, phải tự điền.
 - Người dùng muốn đơn ở trạng thái **Duyệt (submit)**. Tạo nháp trước, đối chiếu `rounded_total` với "Tổng tiền thanh toán" của Misa. Khớp thì mới submit, lệch thì báo lại.
