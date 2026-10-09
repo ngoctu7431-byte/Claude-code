@@ -42,3 +42,12 @@ hậu tố của mã gấp không trùng với mã thường (`SORA10-1` là 100
 - Lọc theo tiền tố số chứng từ trước khi ghép khách hàng hoặc mã hàng. Báo lại cho người dùng số đơn `ĐH` đã bỏ qua.
 - Số chứng từ Misa ghi vào ô **`po_no`** (số PO của khách) trên Sales Order, ví dụ `SAL-ORD-2026-00495` có `po_no` = `BH05132`.
 - Trước khi tạo đơn, kiểm tra trên ERP xem số `BH` đó đã có Sales Order có `po_no` trùng chưa (tính cả đơn nháp). Đã có thì bỏ qua, không tạo trùng.
+- Mã hàng trên phiếu Misa trùng mã ERP. Kiểm tra khách hàng và mã hàng đã có trên ERP trước khi tạo đơn.
+- Cách điền Sales Order (theo các đơn đã đưa lên trước đây):
+  - Đơn giá lấy nguyên giá Misa (chưa VAT), ghi vào cả `rate` và `price_list_rate`.
+  - `taxes_and_charges` = `VAT 8% - TC` và thêm dòng thuế: On Net Total, `VAT - TC`, 8%, `Main - TC`.
+  - Kho dùng `Kho tổng bán hàng - TC`. Ngày giao bằng ngày chứng từ + 7 ngày. `po_date` bằng ngày chứng từ.
+  - Chiết khấu Misa ghi vào `discount_amount`, với `apply_discount_on` = `Net Total`.
+  - Diễn giải Misa ghi vào mô tả dòng hàng đầu tiên, dạng `GIAO HÀNG: …`. Bỏ qua diễn giải chung chung kiểu "Bán hàng <tên khách>".
+  - Dòng ghi chú dưới mặt hàng ghi vào mô tả của dòng đó.
+- Người dùng muốn đơn ở trạng thái **Duyệt (submit)**. Tạo nháp trước, đối chiếu `rounded_total` với "Tổng tiền thanh toán" của Misa. Khớp thì mới submit, lệch thì báo lại.
