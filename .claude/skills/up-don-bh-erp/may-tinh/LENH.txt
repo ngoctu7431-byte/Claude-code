@@ -1,0 +1,19 @@
+LỆNH MÁY QUÉT BH (dựng 29/09/2026 trên máy Tú)
+
+Khoá ERP: script tự đọc từ C:\Claude Code\.mcp.json (khoá của ngoctu.7431@gmail.com). Không có file khoá riêng.
+Sổ bỏ qua: C:\Claude Code\routines\misa-bh-sync-bo-qua.md
+
+Đăng nhập MISA (1 lần, và mỗi khi báo PHIÊN MISA ĐÃ HẾT):
+  "C:\Claude Code\routines\quet-bh\.venv\Scripts\python.exe" "C:\Claude Code\routines\quet-bh\quet-bh-misa-len-erp.py" --dang-nhap
+
+Chạy thử CHỈ XEM:
+  "C:\Claude Code\routines\quet-bh\.venv\Scripts\python.exe" "C:\Claude Code\routines\quet-bh\quet-bh-misa-len-erp.py" --tu-dong --bo-qua "C:\Claude Code\routines\misa-bh-sync-bo-qua.md"
+
+Routine gọi (ghi thật):
+  "C:\Claude Code\routines\quet-bh\.venv\Scripts\python.exe" "C:\Claude Code\routines\quet-bh\quet-bh-misa-len-erp.py" --tu-dong --that --bo-qua "C:\Claude Code\routines\misa-bh-sync-bo-qua.md"
+
+Up đúng một BH (thay BHxxxxx; BH cũ thêm --tu <ngày hạch toán yyyy-mm-dd>; BH nghi trùng đã được Tú xác nhận thêm --cho-trung):
+  "C:\Claude Code\routines\quet-bh\.venv\Scripts\python.exe" "C:\Claude Code\routines\quet-bh\quet-bh-misa-len-erp.py" --tu-dong --chi BHxxxxx --that --bo-qua "C:\Claude Code\routines\misa-bh-sync-bo-qua.md"
+
+Mở cửa sổ đăng nhập MISA mà không bắt chờ (routine tự gọi khi MISA đăng xuất):
+  & "C:\Claude Code\routines\quet-bh\dang-nhap-misa.cmd"
