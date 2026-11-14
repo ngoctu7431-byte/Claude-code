@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TIEU_DE_TAB}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ===== MẪU VĂN BẢN GỬI KHÁCH – NỆM THÀNH CÔNG =====
+     Khổ A4 dọc. Màu chủ đạo: xanh navy + xanh da trời. Font Be Vietnam Pro. */
+  :root{
+    --navy:#1f2d5c; --sky:#5bc0e8; --sky-text:#2a8fc4;
+    --pale:#eaf5fc; --row:#eef2f9; --ink:#1d1d1f; --muted:#6b7280; --line:#d6dbe6;
+  }
+  @page{ size:A4; margin:0 }
+  *{ box-sizing:border-box }
+  body{ margin:0; background:#e5e7eb; font-family:'Be Vietnam Pro',Arial,sans-serif; color:var(--ink); font-size:13.5px; line-height:1.55 }
+  .page{ width:210mm; min-height:297mm; margin:16px auto; background:#fff; position:relative; padding:14mm 13mm 22mm; box-shadow:0 2px 12px rgba(0,0,0,.12) }
+  @media print{ body{background:#fff} .page{margin:0; box-shadow:none; height:296.5mm; min-height:0; overflow:hidden} }
+  @media (max-width:820px){ .page{ width:auto; min-height:0; margin:0; padding:20px 16px 70px } }
+
+  /* Header */
+  .hdr{ display:flex; justify-content:space-between; align-items:center; gap:16px }
+  .brand{ display:flex; align-items:center; gap:12px }
+  .brand img{ width:118px; height:auto }
+  .brand .l1{ color:var(--navy); font-weight:700; font-size:13px; letter-spacing:.2px }
+  .brand .l2{ color:var(--navy); font-weight:800; font-size:24px; letter-spacing:.5px; text-align:center }
+  .addr{ text-align:right; font-size:10.5px; color:var(--muted); line-height:1.6 }
+  .addr b{ color:var(--ink); font-weight:500 }
+  .addr a{ color:var(--sky-text); text-decoration:none }
+  .rule{ height:3px; margin:10px 0 8px; background:linear-gradient(90deg,var(--navy) 0 77%,var(--sky) 77% 100%) }
+  .meta{ display:flex; justify-content:space-between; font-size:12.5px }
+  .meta i{ color:#333 }
+
+  /* Tiêu đề */
+  h1{ text-align:center; font-size:34px; font-weight:800; margin:10px 0 0; letter-spacing:.5px }
+  .vv{ text-align:center; color:var(--navy); font-weight:500; font-size:15px; margin:2px 0 12px }
+  .kg{ font-weight:600; font-size:15px; margin:0 0 4px }
+  p{ margin:0 0 8px }
+
+  /* Băng nổi bật (giờ chốt, tổng tiền, hạn hiệu lực…) */
+  .banner{ display:flex; border-radius:8px; overflow:hidden; margin:12px 0 10px }
+  .banner .left{ flex:1; background:var(--navy); color:#fff; padding:10px 18px }
+  .banner .left .t{ font-weight:700; font-size:17px; letter-spacing:.3px }
+  .banner .left .s{ font-size:12px; opacity:.85 }
+  .banner .right{ width:29%; background:var(--sky); color:var(--navy); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:40px }
+
+  /* Mục đánh số */
+  .sec{ display:flex; align-items:center; gap:10px; margin:12px 0 6px }
+  .sec .n{ width:24px; height:24px; border-radius:50%; background:var(--navy); color:#fff; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex:none }
+  .sec .n.sky{ background:var(--sky-text) }
+  .sec h2{ margin:0; font-size:17px; font-weight:600; color:var(--navy) }
+  .sec h2.sky{ color:var(--sky-text) }
+
+  /* Bảng dạng khối nhạt, viền trái navy */
+  .box{ margin-left:34px; border-left:4px solid var(--navy); background:var(--row) }
+  .box .r{ display:grid; grid-template-columns:34% 1fr; gap:12px; padding:8px 14px; border-bottom:1px solid var(--line) }
+  .box .r:last-child{ border-bottom:0 }
+  .box .r .k{ font-weight:600 }
+  .box .ex{ color:var(--muted); font-style:italic }
+
+  /* Bảng giá / bảng số liệu (dùng cho báo giá) */
+  table.tb{ width:calc(100% - 34px); margin-left:34px; border-collapse:collapse; font-size:12.5px }
+  .tb th{ background:var(--navy); color:#fff; font-weight:600; padding:7px 8px; text-align:left }
+  .tb td{ padding:6px 8px; border-bottom:1px solid var(--line) }
+  .tb tr:nth-child(even) td{ background:var(--row) }
+  .tb .num{ text-align:right; white-space:nowrap }
+  .tb tfoot td{ font-weight:700; background:var(--pale); color:var(--navy) }
+
+  /* Thẻ (2 ô cạnh nhau) */
+  .cards{ margin-left:34px; display:grid; grid-template-columns:1fr 1fr; gap:14px }
+  .card{ background:var(--pale); border-radius:8px; padding:8px 16px; color:var(--navy); font-weight:600 }
+  .card .big{ color:var(--sky-text); font-size:26px; font-weight:700 }
+  .card small{ font-size:13px; font-weight:500; color:var(--ink) }
+  .note{ margin:6px 0 0 34px; color:var(--muted); font-style:italic; font-size:12.5px }
+
+  ul.dots{ margin:0 0 0 34px; padding-left:18px }
+  ul.dots li{ margin-bottom:5px }
+  ul.dots li::marker{ color:var(--navy) }
+  .hl{ color:var(--sky-text); font-weight:600 }
+
+  /* Chân văn bản */
+  .foot{ display:flex; justify-content:space-between; margin-top:16px; font-size:11.5px }
+  .noinhan b{ font-size:12.5px }
+  .ky{ width:38%; text-align:center; font-weight:700; font-size:14px }
+  .ky .moc{ height:110px }
+  .ky .ten{ font-size:16px }
+  .bar{ position:absolute; left:0; right:0; bottom:0; background:var(--navy); color:#fff; text-align:center; font-size:11.5px; font-weight:600; padding:9px 0; letter-spacing:.3px }
+  @media (max-width:820px){ .box .r{ grid-template-columns:1fr } .cards{ grid-template-columns:1fr } .banner .right{ font-size:28px } .hdr{ flex-direction:column; align-items:flex-start } .addr{ text-align:left } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== HEADER (giữ nguyên) ===== -->
+  <div class="hdr">
+    <div class="brand">
+      <img src="logo-tc.png" alt="Logo Nệm Thành Công">
+      <div><div class="l1">CÔNG TY CỔ PHẦN SẢN XUẤT &amp; THƯƠNG MẠI</div><div class="l2">NỆM THÀNH CÔNG</div></div>
+    </div>
+    <div class="addr">Đường số 8, CCN Hoàng Gia, ấp Mới 2,<br>Xã Mỹ Hạnh, Tỉnh Tây Ninh<br><b>Hotline: 1800 646 836</b><br><a>nemthanhcong.com</a></div>
+  </div>
+  <div class="rule"></div>
+  <div class="meta"><span>Số: {{SO_VAN_BAN}}</span><i>Tây Ninh, ngày {{NGAY}} tháng {{THANG}} năm {{NAM}}</i></div>
+
+  <!-- ===== TIÊU ĐỀ ===== -->
+  <h1>{{LOAI_VAN_BAN}}</h1>
+  <div class="vv">V/v: {{TRICH_YEU}}</div>
+
+  <div class="kg">Kính gửi: {{KINH_GUI}}</div>
+  <p>{{DOAN_MO_DAU}}</p>
+
+  <!-- ===== BĂNG NỔI BẬT (tùy chọn) ===== -->
+  <div class="banner">
+    <div class="left"><div class="t">{{BANNER_TIEU_DE}}</div><div class="s">{{BANNER_PHU}}</div></div>
+    <div class="right">{{BANNER_SO}}</div>
+  </div>
+
+  <!-- ===== MỤC 1: khối bảng nhạt ===== -->
+  <div class="sec"><span class="n">1</span><h2>{{MUC_1}}</h2></div>
+  <div class="box">
+    <div class="r"><div class="k">{{NHAN}}</div><div>{{NOI_DUNG}} <span class="ex">{{VI_DU}}</span></div></div>
+    <div class="r"><div class="k">{{NHAN}}</div><div>{{NOI_DUNG}}</div></div>
+  </div>
+
+  <!-- ===== MỤC 2: thẻ đôi (hoặc thay bằng bảng giá table.tb) ===== -->
+  <div class="sec"><span class="n sky">2</span><h2 class="sky">{{MUC_2}}</h2></div>
+  <div class="cards">
+    <div class="card">{{THE_1}} <span class="big">{{SO_1}}</span> <small>{{DON_VI_1}}</small></div>
+    <div class="card">{{THE_2}} <span class="big">{{SO_2}}</span> <small>{{DON_VI_2}}</small></div>
+  </div>
+  <div class="note">{{GHI_CHU}}</div>
+
+  <!-- Ví dụ bảng giá (dùng cho BÁO GIÁ, xóa nếu không cần):
+  <table class="tb">
+    <thead><tr><th>STT</th><th>Sản phẩm</th><th>Quy cách</th><th class="num">SL</th><th class="num">Đơn giá (gồm VAT)</th><th class="num">Thành tiền</th></tr></thead>
+    <tbody><tr><td>1</td><td>Nệm Sora 10cm</td><td>100x200x10</td><td class="num">2</td><td class="num">572.000</td><td class="num">1.144.000</td></tr></tbody>
+    <tfoot><tr><td colspan="5">Tổng cộng (đã gồm VAT 8%)</td><td class="num">1.144.000</td></tr></tfoot>
+  </table> -->
+
+  <!-- ===== MỤC 3: gạch đầu dòng ===== -->
+  <div class="sec"><span class="n">3</span><h2>{{MUC_3}}</h2></div>
+  <ul class="dots">
+    <li>{{Y_1}}</li>
+    <li>{{Y_2}}</li>
+  </ul>
+
+  <p style="margin-top:10px">{{DOAN_KET}} <span class="hl">{{CUM_NHAN_MANH}}</span>.</p>
+  <p><i>Trân trọng cảm ơn sự đồng hành của Quý khách hàng!</i></p>
+
+  <!-- ===== CHÂN: nơi nhận + ký ===== -->
+  <div class="foot">
+    <div class="noinhan"><b>Nơi nhận:</b><br>- Như trên;<br>- Ban Giám đốc (để b/c);<br>- {{BO_PHAN}} (để t/h);<br>- Lưu: P.KD B2B.</div>
+    <div class="ky">TM. CÔNG TY<br>GIÁM ĐỐC<div class="moc"><!-- chữ ký + mộc: công chúa tự đóng --></div><div class="ten">Phạm Văn Bình</div></div>
+  </div>
+
+  <div class="bar">NỆM THÀNH CÔNG · Thương hiệu: NỆM VIỆT NHẬT – NỆM THUẦN VIỆT</div>
+</div>
+</body>
+</html>
